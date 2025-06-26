@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wi-Fi Setup Commands</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #1e1e1e;
+      color: #eaeaea;
+      padding: 20px;
+    }
+    .command-block {
+      background: #2e2e2e;
+      border: 1px solid #444;
+      padding: 15px;
+      margin-bottom: 15px;
+      position: relative;
+      border-radius: 8px;
+    }
+    button.copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button.copy-btn.copied {
+      background: #2196F3;
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>Captive Portal Setup</h1>
+
+
+
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo apt update && sudo apt upgrade -y
+sudo apt install hostapd dnsmasq lighttpd iptables-persistent -y
+sudo systemctl unmask hostapd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dhcpcd.conf</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo apt install dhcpcd5 -y</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable dhcpcd
+sudo systemctl start dhcpcd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo service dhcpcd restart</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo rfkill unblock wlan</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo rfkill unblock wifi</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart NetworkManager</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo rfkill unblock all</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo ip link set wlan0 up</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo apt update
+sudo apt install hostapd dnsmasq lighttpd -y
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dhcpcd.conf</pre>
+  </div>
+
+
+    <h3>Scroll to the bottom of the file and add the following lines:</h3>
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart dhcpcd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo apt update
+sudo apt install hostapd dnsmasq lighttpd iptables-persistent -y</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/hostapd/hostapd.conf</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>interface=wlan0
+driver=nl80211
+ssid=WiFiName
+hw_mode=g
+channel=6
+auth_algs=1
+wmm_enabled=0
+ignore_broadcast_ssid=0</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/default/hostapd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>DAEMON_CONF="/etc/hostapd/hostapd.conf"</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl start hostapd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dnsmasq.conf</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>interface=wlan0
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+address=/#/192.168.4.1</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart dnsmasq
+sudo systemctl enable dnsmasq</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /var/www/html/index.html</pre>
+  </div>
+
+
+   <h3>website in this folder(html)</h3>
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre><html>
+<body>
+  <h1>Demo Website</h1>
+</body>
+</html></pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable lighttpd
+sudo systemctl restart lighttpd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j DNAT --to-destination 192.168.4.1:80
+sudo iptables -t nat -A POSTROUTING -j MASQUERADE</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo netfilter-persistent save</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable hostapd
+sudo systemctl enable dnsmasq
+sudo systemctl enable lighttpd</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dnsmasq.conf</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>interface=wlan0
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+domain-needed
+bogus-priv
+dhcp-option=3,192.168.4.1
+dhcp-option=6,192.168.4.1
+address=/#/192.168.4.1</pre>
+  </div>
+
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart dnsmasq</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dhcpcd.conf</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>duid
+persistent
+vendorclassid
+option domain_name_servers, domain_name, domain_search
+option classless_static_routes
+option interface_mtu
+option host_name
+option rapid_commit
+require dhcp_server_identifier
+slaac private
+
+interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo reboot</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo rfkill unblock wlan</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo ip link set wlan0 up</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart hostapd
+sleep 3</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo ip addr add 192.168.4.1/24 dev wlan0</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/lighttpd/lighttpd.conf</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>server.modules = (
+        "mod_indexfile",
+        "mod_access",
+        "mod_alias",
+        "mod_redirect",
+)
+
+server.document-root        = "/var/www/html"
+server.upload-dirs          = ( "/var/cache/lighttpd/uploads" )
+server.errorlog             = "/var/log/lighttpd/error.log"
+server.pid-file             = "/run/lighttpd.pid"
+server.username             = "www-data"
+server.groupname            = "www-data"
+server.port                 = 80
+
+# features
+server.feature-flags       += ("server.h2proto" => "enable")
+server.feature-flags       += ("server.h2c"     => "enable")
+server.feature-flags       += ("server.graceful-shutdown-timeout" => 5)
+
+server.http-parseopts = (
+  "header-strict"           => "enable",
+  "host-strict"             => "enable",
+  "host-normalize"          => "enable",
+  "url-normalize-unreserved"=> "enable",
+  "url-normalize-required"  => "enable",
+  "url-ctrls-reject"        => "enable",
+  "url-path-2f-decode"      => "enable",
+  "url-path-dotseg-remove"  => "enable",
+)
+
+index-file.names            = ( "index.php", "index.html" )
+url.access-deny             = ( "~", ".inc" )
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
+include_shell "/usr/share/lighttpd/create-mime.conf.pl"
+include "/etc/lighttpd/conf-enabled/*.conf"
+
+server.modules += (
+        "mod_dirlisting",
+        "mod_staticfile",
+)
+
+# === Captive Portal Redirection Rules ===
+$HTTP["url"] =~ "^/generate_204$" {
+  url.redirect = ("" => "/")
+}
+
+$HTTP["url"] =~ "^/hotspot-detect.html$" {
+  url.redirect = ("" => "/")
+}
+
+$HTTP["url"] =~ "^/ncsi.txt$" {
+  url.redirect = ("" => "/")
+}
+
+$HTTP["url"] =~ "^/connecttest.txt$" {
+  url.redirect = ("" => "/")
+}</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart lighttpd</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable hostapd
+sudo systemctl enable dnsmasq
+sudo systemctl enable lighttpd</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo reboot</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo rfkill unblock wifi</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo ip link set wlan0 up</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo mkdir -p /etc/systemd/system/hostapd.service.d</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/systemd/system/hostapd.service.d/override.conf</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>[Unit]
+After=network.target
+Wants=network.target</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl daemon-reexec</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl daemon-reload</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl unmask hostapd</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable hostapd</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable dnsmasq</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl enable lighttpd</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo reboot</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/rc.local</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>#!/bin/bash
+
+# Unblock Wi-Fi
+rfkill unblock all
+
+# Wait to ensure Wi-Fi hardware is ready
+sleep 5
+
+# Bring up wlan0
+ip link set wlan0 up
+
+# Assign static IP (safety net)
+ip addr add 192.168.4.1/24 dev wlan0
+
+# Wait again to let wlan0 fully initialize
+sleep 5
+
+# Restart captive services
+systemctl restart dnsmasq
+systemctl restart hostapd
+systemctl restart lighttpd
+
+exit 0</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo chmod +x /etc/rc.local</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo reboot</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/sysctl.conf</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre>net.ipv4.ip_forward=1</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo sysctl -p</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo apt-get install iptables-persistent</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo netfilter-persistent save</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo nano /etc/dnsmasq.conf</pre>
+  </div>
+
+    <h3>Remove or comment out:</h3>
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">nano</button>
+    <pre># address=/#/192.168.4.1</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo systemctl restart dnsmasq
+</pre>
+  </div>
+
+
+  <div class="command-block">
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+    <pre>sudo reboot</pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    function copyCommand(btn) {
+      const pre = btn.parentElement.querySelector("pre");
+      const text = pre.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerText = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerText = "Copy";
+          btn.classList.remove("copied");
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
